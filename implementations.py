@@ -35,56 +35,69 @@ def fish_move():
         movesteps = random.choice(spaces_to_move)
         if move == "North":
             fishosys[x][y] = " "
-            if fishosys[x-movesteps][y] == "#":
-                # time.sleep(1)
-                print("The fish fell into the hands of the shark")
-                # time.sleep(2)
-                switch_for_evasion = [0,1]
-                if random.choices(switch_for_evasion, [4,1])[0] == 1:
-                    print("The fish has evaded the attack")
-                    pass
-                fishosys[x-movesteps][y] = "#"
+            if is_in_bounds(x - movesteps , y):
+                if fishosys[x-movesteps][y] == "#":
+                    # time.sleep(1)
+                    print("The fish fell into the hands of the shark")
+                    # time.sleep(2)
+                    switch_for_evasion = [0,1]
+                    if random.choices(switch_for_evasion, [4,1])[0] == 1:
+                        print("The fish has evaded the attack")
+                        pass
+                    fishosys[x-movesteps][y] = "#"
+                else:
+                    fishosys[x-movesteps][y] = ">"
             else:
-                fishosys[x-movesteps][y] = ">"
+                print('MOVEMENT OUT OF BOUNDS!!!')
         if move == "East":
             fishosys[x][y] = " "
-            if fishosys[x][y+movesteps] == "#":
-                # time.sleep(1)
-                print("The fish fell into the hands of the shark")
-                # time.sleep(2)
-                switch_for_evasion = [0,1]
-                if random.choices(switch_for_evasion, [4,1])[0] == 1:
-                    print("The fish has evaded the attack")
-                    pass
-                fishosys[x][y+movesteps] = "#"
+            if is_in_bounds(x, y + movesteps):
+                if fishosys[x][y+movesteps] == "#":
+                    # time.sleep(1)
+                    print("The fish fell into the hands of the shark")
+                    # time.sleep(2)
+                    switch_for_evasion = [0,1]
+                    if random.choices(switch_for_evasion, [4,1])[0] == 1:
+                        print("The fish has evaded the attack")
+                        pass
+                    fishosys[x][y+movesteps] = "#"
+                else:
+                    fishosys[x][y+movesteps] = ">"
             else:
-                fishosys[x][y+movesteps] = ">"
+                print('MOVEMENT OUT OF BOUNDS!!!')
         if move == "South":
             fishosys[x][y] = " "
-            if fishosys[x+movesteps][y] == "#":
-                # time.sleep(1)
-                print("The fish fell into the hands of the shark")
-                # time.sleep(2)
-                switch_for_evasion = [0,1]
-                if random.choices(switch_for_evasion, [4,1])[0] == 1:
-                    print("The fish has evaded the shark")
-                    pass
-                fishosys[x+movesteps][y] = "#"
+            if is_in_bounds(x + movesteps , y):
+                if fishosys[x+movesteps][y] == "#":
+                    # time.sleep(1)
+                    print("The fish fell into the hands of the shark")
+                    # time.sleep(2)
+                    switch_for_evasion = [0,1]
+                    if random.choices(switch_for_evasion, [4,1])[0] == 1:
+                        print("The fish has evaded the shark")
+                        pass
+                    fishosys[x+movesteps][y] = "#"
+                else:
+                    fishosys[x+movesteps][y] = ">"
             else:
-                fishosys[x+movesteps][y] = ">"
+                print('MOVEMENT OUT OF BOUNDS!!!')
         if move == "West":
             fishosys[x][y] = " "
-            if fishosys[x][y-movesteps] == "#":
-                # time.sleep(1)         
-                print("The fish fell into the hands of the shark")
-                # time.sleep(2)
-                switch_for_evasion = [0,1]
-                if random.choices(switch_for_evasion, [4,1])[0] == 1:
-                    print("The fish has evaded the attack")
-                    pass
-                fishosys[x][y-movesteps] = "#"
+            if is_in_bounds(x, y - movesteps):
+                if fishosys[x][y-movesteps] == "#":
+                    # time.sleep(1)         
+                    print("The fish fell into the hands of the shark")
+                    # time.sleep(2)
+                    switch_for_evasion = [0,1]
+                    if random.choices(switch_for_evasion, [4,1])[0] == 1:
+                        print("The fish has evaded the attack")
+                        pass
+                    fishosys[x][y-movesteps] = "#"
+                else:
+                    fishosys[x][y-movesteps] = ">"
             else:
-                fishosys[x][y-movesteps] = ">"
+                print('MOVEMENT OUT OF BOUNDS!!!')
+
         print(bcolors.OKBLUE + f"The fish will now move {move} and {movesteps} steps" + bcolors.OKBLUE)
 
 
@@ -120,52 +133,64 @@ def shark_move():
         movesteps = random.choice(spaces_to_move)
         if move == "North":
             fishosys[x][y] = " "
-            if fishosys[x-movesteps][y] == ">":
-                # time.sleep(1)
-                print("The shark is having a feast")
-                switch_for_evasion = [0,1]
-                if random.choices(switch_for_evasion, [4,1])[0] == 1:
-                    print("The fish has evaded this attack")
-                    pass
-                fishosys[x-movesteps][y] = "#"
+            if is_in_bounds(x - movesteps , y):
+                if fishosys[x-movesteps][y] == ">":
+                    # time.sleep(1)
+                    print("The shark is having a feast")
+                    switch_for_evasion = [0,1]
+                    if random.choices(switch_for_evasion, [4,1])[0] == 1:
+                        print("The fish has evaded this attack")
+                        pass
+                    fishosys[x-movesteps][y] = "#"
+                else:
+                    fishosys[x-movesteps][y] = "#"
             else:
-                fishosys[x-movesteps][y] = "#"
+                print('MOVEMENT OUT OF BOUNDS!!!')
         if move == "East":
             fishosys[x][y] = " "
-            if fishosys[x][y+movesteps] == ">":
-                # time.sleep(1)
-                print("The shark is having a feast")
-                switch_for_evasion = [0,1]
-                if random.choices(switch_for_evasion, [4,1])[0] == 1:
-                    print("The fish has evaded this attack")
-                    pass
-                fishosys[x][y+movesteps] = "#"
+            if is_in_bounds(x, y + movesteps):
+                if fishosys[x][y+movesteps] == ">":
+                    # time.sleep(1)
+                    print("The shark is having a feast")
+                    switch_for_evasion = [0,1]
+                    if random.choices(switch_for_evasion, [4,1])[0] == 1:
+                        print("The fish has evaded this attack")
+                        pass
+                    fishosys[x][y+movesteps] = "#"
+                else:
+                    fishosys[x][y+movesteps] = "#"
             else:
-                fishosys[x][y+movesteps] = "#"
+                print('MOVEMENT OUT OF BOUNDS!!!')
         if move == "South":
             fishosys[x][y] = " "
-            if fishosys[x+movesteps][y] == ">":
-                # time.sleep(1)
-                print("The shark is having a feast")
-                switch_for_evasion = [0,1]
-                if random.choices(switch_for_evasion, [4,1])[0] == 1:
-                    print("The fish has evaded this attack")
-                    pass
-                fishosys[x+movesteps][y] = "#"
+            if is_in_bounds(x + movesteps , y):
+                if fishosys[x+movesteps][y] == ">":
+                    # time.sleep(1)
+                    print("The shark is having a feast")
+                    switch_for_evasion = [0,1]
+                    if random.choices(switch_for_evasion, [4,1])[0] == 1:
+                        print("The fish has evaded this attack")
+                        pass
+                    fishosys[x+movesteps][y] = "#"
+                else:
+                    fishosys[x+movesteps][y] = "#"
             else:
-                fishosys[x+movesteps][y] = "#"
+                print('MOVEMENT OUT OF BOUNDS!!!')
         if move == "West":
             fishosys[x][y] = " "
-            if fishosys[x][y-movesteps] == ">":
-                # time.sleep(1)
-                print("The shark is having a feast")
-                switch_for_evasion = [0,1]
-                if random.choices(switch_for_evasion, [4,1])[0] == 1:
-                    print("The fish has evaded this attack")
-                    pass
-                fishosys[x][y-movesteps] = "#"
+            if is_in_bounds(x, y - movesteps):
+                if fishosys[x][y-movesteps] == ">":
+                    # time.sleep(1)
+                    print("The shark is having a feast")
+                    switch_for_evasion = [0,1]
+                    if random.choices(switch_for_evasion, [4,1])[0] == 1:
+                        print("The fish has evaded this attack")
+                        pass
+                    fishosys[x][y-movesteps] = "#"
+                else:
+                    fishosys[x][y-movesteps] = "#"
             else:
-                fishosys[x][y-movesteps] = "#"
+                print('MOVEMENT OUT OF BOUNDS!!!')
         print(bcolors.OKBLUE + f"The shark will now move {move} and {movesteps} steps" + bcolors.OKBLUE)
 
 
@@ -201,6 +226,10 @@ def  state():
 
 def evade():
     pass
+
+def is_in_bounds(x, y) -> bool:
+    return 0 <= x < len(fishosys) and 0 <= y < len(fishosys[0])
+
 
 while state():
     fishes = 0
