@@ -30,7 +30,11 @@ def fish_move():
         directions = ["North", "East", "South", "West"]
         spaces_to_move = [1, 2, 3]
         
-        [print(row) for row in fishosys]
+        # [print(row) for row in fishosys]
+        # cleaner visualization in cli
+        for row in fishosys:
+            print("".join(row))
+
         move = random.choice(directions)
         movesteps = random.choice(spaces_to_move)
         if move == "North":
@@ -109,8 +113,15 @@ def fish_move():
             spawn(">")
 
 def spawn(species):
-    idx_1 = random.randint(0, 19)
-    idx_2 = random.randint(0, 19)
+    # idx_1 = random.randint(0, 19)
+    # idx_2 = random.randint(0, 19)
+
+    # proper spawn range 'imo' lol
+    rows = len(fishosys)
+    cols = len(fishosys[0])
+    idx_1 = random.randint(0, rows - 1)
+    idx_2 = random.randint(0, cols - 1)
+
     print(idx_1, idx_2)
     if species == ">":
         if fishosys[idx_1][idx_2] != "#":
@@ -128,7 +139,11 @@ def shark_move():
         directions = ["North", "East", "South", "West"]
         spaces_to_move = [1, 2, 3]
         
-        [print(row) for row in fishosys]
+        # [print(row) for row in fishosys]
+        # cleaner visualization in cli
+        for row in fishosys:
+            print("".join(row))
+
         move = random.choice(directions)
         movesteps = random.choice(spaces_to_move)
         if move == "North":
