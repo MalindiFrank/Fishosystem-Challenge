@@ -34,6 +34,5 @@ def space(fishosys = fishosys):
             if object == " ":
                 return x, y
 
-
 if __name__ == "__main__":
     print(fish_noticer())
