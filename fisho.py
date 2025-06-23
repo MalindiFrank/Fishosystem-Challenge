@@ -35,8 +35,5 @@ def space(fishosys = fishosys):
                 return x, y
 
 
-
-
-
 if __name__ == "__main__":
     print(fish_noticer())
